@@ -26,7 +26,8 @@ class CellFinder:
 
     @staticmethod
     def rotate(a, b, c):                                        # "Rotate" stuff using Linear Algebra (scalar dot)
-        return (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0])
+        return (b[0] - a[0]) * (c[1] - b[1]) - \
+               (b[1] - a[1]) * (c[0] - b[0])
 
     def process(self, coord_array):                             # Main loop
         self.init_search_poll(coord_array)                      # Init of 'search_poll'

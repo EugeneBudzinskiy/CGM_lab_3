@@ -52,9 +52,9 @@ def main():
             draw.line((start_y, start_x, end_y, end_x),  # Draw the line where is need
                       fill=(0, 191, 255), width=2)
 
-        image = image.transpose(Image.FLIP_TOP_BOTTOM)  # Flip the image
-        image.show()                                    # Show the result with cell
-        image.save('cell_' + result_filename)           # Save the CELL result image
+        image = image.transpose(Image.FLIP_TOP_BOTTOM)   # Flip the image
+        image.show()                                     # Show the result with cell
+        image.save('cell_' + result_filename)            # Save the CELL result image
 
 
 if __name__ == '__main__':
