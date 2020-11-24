@@ -3,6 +3,8 @@ class CellFinder:
     """ 'Gift wrapping' algorithm, also known as 'Jarvis march' """
 
     def __init__(self):
+        self.cell_filename = "DS_Cell.txt"                      # Name of result cell dataset
+
         self.search_poll = []                                   # List of point which include in cell search
         self.cell = []                                          # Result list of coords of cell
         self.n = 0                                              # Length of input coords list
@@ -27,7 +29,7 @@ class CellFinder:
     @staticmethod
     def rotate(a, b, c):                                        # "Rotate" stuff using Linear Algebra (scalar dot)
         return (b[0] - a[0]) * (c[1] - b[1]) - \
-               (b[1] - a[1]) * (c[0] - b[0])
+               (b[1] - a[1]) * (c[0] - b[0])                    # Check where point relative to each other
 
     def process(self, coord_array):                             # Main loop
         self.init_search_poll(coord_array)                      # Init of 'search_poll'
@@ -53,3 +55,14 @@ class CellFinder:
                 self.search_poll.pop(right)                     # And delete this point from 'search_poll'
 
         return self.cell                                        # Return result cell
+
+    def save_cell(self, coord_array):                           # Saving cell as dataset
+        if len(self.cell) > 0:                                  # If cell not empty
+            with open(self.cell_filename, 'w') as file:         # Work with result cell file
+                for el in self.cell:                            # For throw all indexes of cell
+                    coord = coord_array[el]                     # Choose right coords by index
+                    coord = f'{coord[0]} {coord[1]}\n'          # Convert coords to str
+                    file.write(coord)                           # Write data to file
+        else:
+            print("!!! You try to save the empty CELL !!!")     # Print Error
+            exit(-1)                                            # Exit with -1

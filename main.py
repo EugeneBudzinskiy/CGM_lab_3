@@ -27,15 +27,10 @@ def main():
 
         image = multiply(mask, 255)                      # Scale data from [0, 1] to [0, 255]
         image = Image.fromarray(image)                   # Create image from data array
-        image = image.transpose(Image.FLIP_TOP_BOTTOM)   # Flip the image
-
-        image.show()                                     # Show result without cell
-        image.save(result_filename)                      # Save the result image
-
-        image = image.transpose(Image.FLIP_TOP_BOTTOM)   # Flip back the image for cell
         draw = ImageDraw.Draw(image)                     # Create a drawing tool
 
         cell_result = cell_finder.process(coords)        # Run the cell finder
+        cell_finder.save_cell(coords)                    # Save the dataset of cell coords
         ln = len(cell_result)                            # Get len of result cell list
 
         for i in range(ln):                              # Run throw all point of cell
@@ -54,7 +49,7 @@ def main():
 
         image = image.transpose(Image.FLIP_TOP_BOTTOM)   # Flip the image
         image.show()                                     # Show the result with cell
-        image.save('cell_' + result_filename)            # Save the CELL result image
+        image.save(result_filename)                      # Save the CELL result image
 
 
 if __name__ == '__main__':
